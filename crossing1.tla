@@ -49,7 +49,7 @@ Next == ( \/ CrossesAlone
           \/ CrossesWithWolf
         ) /\ Safe'
 
-Unsolved == ~ Final
+\* Unsolved == ~ Final
 
 =============================================================================
 \* Modification History
