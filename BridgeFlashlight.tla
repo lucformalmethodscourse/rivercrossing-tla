@@ -11,7 +11,7 @@ VARIABLES
 Times == ( "huey" :> 1 @@ "dewey" :> 2 @@ "louie" :> 5 @@ "donald" :> 10 )
 Adventurers == DOMAIN Times
 Flashlight == "maglite"
-InitialBatteryLife == 17
+InitialBatteryLife == 30
 
 TypeOK == near \union far \subseteq Adventurers \union {Flashlight} /\ light \in Int
 
