@@ -10,3 +10,7 @@
 - [four persons and a flashlight](
 https://en.wikipedia.org/wiki/Bridge_and_torch_problem) ([alternate solution](https://gist.github.com/konnov/17a182a4e223d4173c8a2db3fc6879f6))
 - [list of various challenges](http://brainden.com/crossing-river.htm)
+
+## Can it be done in PlusCal?
+
+- [PlusCal solution](https://surfingcomplexity.blog/2014/06/04/crossing-the-river-with-tla/)
