@@ -26,7 +26,7 @@ People(here) == here \ {Flashlight}
 
 OneCrosses(here, there) == 
         /\ Flashlight \in here
-        /\ \E a \in People(here):
+        /\ \E a \in People(here) :
                 /\ light' = light - Times[a] 
                 /\ here' = here \ {a, Flashlight}
                 /\ there' = there \union {a, Flashlight}

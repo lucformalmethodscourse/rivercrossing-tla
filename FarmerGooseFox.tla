@@ -12,37 +12,44 @@ Here == FALSE
 
 There == TRUE
 
-TypeOK == \A a \in vars : a \in BOOLEAN 
+TypeOK == \A a \in vars : a \in { Here, There }
 
-Init == /\ farmer = Here
+Init ==
+        /\ farmer = Here
         /\ beans = Here
         /\ goose = Here
         /\ fox = Here
 
 Final == \A a \in vars : a = There
 
-CrossesAlone == /\ (farmer' = ~ farmer) 
-                /\ UNCHANGED << beans, goose, fox >>       
+CrossesAlone ==
+        /\ farmer' = ~ farmer
+        /\ UNCHANGED << beans, goose, fox >>
 
-CrossesWithbeans ==  (farmer = beans)
-                    /\ (farmer' = ~ farmer) 
-                    /\ (beans' = ~ beans) 
-                    /\ UNCHANGED << goose, fox >>      
+CrossesWithbeans ==
+        /\ farmer = beans
+        /\ farmer' = ~ farmer
+        /\ beans' = ~ beans
+        /\ UNCHANGED << goose, fox >>
 
-CrossesWithgoose == (farmer = goose)
-                   /\ (farmer' = ~ farmer) 
-                   /\ (goose' = ~ goose) 
-                   /\ UNCHANGED << beans, fox >>      
+CrossesWithgoose ==
+        /\ farmer = goose
+        /\ farmer' = ~ farmer
+        /\ goose' = ~ goose
+        /\ UNCHANGED << beans, fox >>
 
-CrossesWithfox ==  (farmer = fox)
-                   /\ (farmer' = ~ farmer) 
-                   /\ (fox' = ~ fox) 
-                   /\ UNCHANGED << beans, goose >>                                                      
+CrossesWithfox ==
+        /\ farmer = fox
+        /\ farmer' = ~ farmer
+        /\ fox' = ~ fox
+        /\ UNCHANGED << beans, goose >>
 
-Safe == (goose = farmer)
-        \/ ( goose # fox /\ goose # beans )        
+Safe ==
+        \/ goose = farmer
+        \/ goose # fox /\ goose # beans
 
-Next == /\ \/ CrossesAlone
+Next ==
+        /\ \/ CrossesAlone
            \/ CrossesWithbeans
            \/ CrossesWithgoose
            \/ CrossesWithfox
