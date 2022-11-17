@@ -8,14 +8,18 @@ VARIABLES
 
 vars == { farmer, beans, goose, fox }
 
+Here == FALSE
+
+There == TRUE
+
 TypeOK == \A a \in vars : a \in BOOLEAN 
 
-Init == /\ farmer = FALSE
-        /\ beans = FALSE
-        /\ goose = FALSE
-        /\ fox = FALSE
+Init == /\ farmer = Here
+        /\ beans = Here
+        /\ goose = Here
+        /\ fox = Here
 
-Final == \A a \in vars : a
+Final == \A a \in vars : a = There
 
 CrossesAlone == /\ (farmer' = ~ farmer) 
                 /\ UNCHANGED << beans, goose, fox >>       
