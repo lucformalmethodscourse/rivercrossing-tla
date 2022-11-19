@@ -1,35 +1,45 @@
 -------------------------- MODULE BridgeFlashlight  --------------------------
 
-EXTENDS TLC, Integers
+\* terminates after everybody has crossed => disable check for deadlock
+
+EXTENDS TLC, Naturals
+
+CONSTANTS 
+        \* these are model values, i.e., symbols identical only to themselves
+        HUEY, DEWEY, LOUIE, DONALD, MAGLITE
 
 VARIABLES 
-  near,
-  far,
-  light
+  near, \* set of objects on the near side
+  far,  \* set of objects on the far side
+  time  \* remaining time in terms of battery life of flashlight 
 
-\* crossing times for each adventurer
-Times == ( "huey" :> 1 @@ "dewey" :> 2 @@ "louie" :> 5 @@ "donald" :> 10 )
-Adventurers == DOMAIN Times
-Flashlight == "maglite"
-InitialBatteryLife == 50
+CrossingTimes == ( HUEY :> 1 @@ DEWEY :> 2 @@ LOUIE :> 5 @@ DONALD :> 10 )
+Adventurers == DOMAIN CrossingTimes
+Flashlight == MAGLITE
+InitialBatteryLife == 17
 
-TypeOK == near \union far \subseteq Adventurers \union {Flashlight} /\ light \in Int
+TypeOK == 
+        /\ near \union far \subseteq Adventurers \union {Flashlight} 
+        /\ time \in Nat
 
 Init == 
         /\ near = Adventurers \union {Flashlight}
         /\ far = {}
-        /\ light = InitialBatteryLife
+        /\ time = InitialBatteryLife
 
-Final == Adventurers \subseteq far \*/\ light >= 0
+CanSee == time >= 0
+
+Final == Adventurers \subseteq far
 
 People(here) == here \ {Flashlight}
 
 OneCrosses(here, there) == 
         /\ Flashlight \in here
         /\ \E a \in People(here) :
-                /\ light' = light - Times[a] 
+                /\ time' = time - CrossingTimes[a] 
                 /\ here' = here \ {a, Flashlight}
                 /\ there' = there \union {a, Flashlight}
+        /\ CanSee'
 
 Max(x, y) == IF x > y THEN x ELSE y
 
@@ -37,14 +47,18 @@ TwoCross(here, there) ==
         /\ Flashlight \in here
         /\ \E a, b \in People(here) : 
                 /\ a # b
-                /\ light' = light - Max(Times[a], Times[b])
+                /\ time' = time - Max(CrossingTimes[a], CrossingTimes[b])
                 /\ here' = here \ {a, b, Flashlight}
                 /\ there' = there \union {a, b, Flashlight}
+        /\ CanSee'
 
 Next == 
         \/ TwoCross(near, far)
+        \/ TwoCross(far, near)
         \/ OneCrosses(far, near)
+        \/ OneCrosses(near, far)
 
+\* TODO comment back in to see solution
 \* Unsolved == ~ Final
 
 =============================================================================

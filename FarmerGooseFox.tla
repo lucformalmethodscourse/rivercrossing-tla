@@ -55,6 +55,7 @@ Next ==
            \/ CrossesWithfox
         /\ Safe'
 
+\* TODO comment back in to see solution
 \* Unsolved == ~ Final
 
 =============================================================================
