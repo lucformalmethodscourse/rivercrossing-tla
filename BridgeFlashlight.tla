@@ -1,6 +1,6 @@
 -------------------------- MODULE BridgeFlashlight  --------------------------
 
-\* terminates after everybody has crossed => disable check for deadlock
+\* IMPORTANT: terminates after everybody has crossed => disable check for deadlock
 
 EXTENDS TLC, Naturals
 
@@ -55,10 +55,11 @@ TwoCross(here, there) ==
 Next == 
         \/ TwoCross(near, far)
         \/ TwoCross(far, near)
-        \/ OneCrosses(far, near)
         \/ OneCrosses(near, far)
+        \/ OneCrosses(far, near)
 
 \* TODO comment back in to see solution
+Unsolved == TRUE
 \* Unsolved == ~ Final
 
 =============================================================================

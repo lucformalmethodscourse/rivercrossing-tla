@@ -56,7 +56,8 @@ Next ==
         /\ Safe'
 
 \* TODO comment back in to see solution
-\* Unsolved == ~ Final
+\* Unsolved == TRUE
+Unsolved == ~ Final
 
 =============================================================================
 \* based on yuriy's version
