@@ -1,5 +1,7 @@
 # River crossing challenges in TLA+
 
+[![Syntax-check models](https://github.com/lucformalmethodscourse/rivercrossing-tla/actions/workflows/main.yml/badge.svg)](https://github.com/lucformalmethodscourse/rivercrossing-tla/actions/workflows/main.yml)
+
 ## Background
 
 - [River crossing puzzles](https://en.wikipedia.org/wiki/River_crossing_puzzle)
