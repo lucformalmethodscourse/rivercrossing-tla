@@ -16,7 +16,7 @@ VARIABLES
 CrossingTimes == ( HUEY :> 1 @@ DEWEY :> 2 @@ LOUIE :> 5 @@ DONALD :> 10 )
 Adventurers == DOMAIN CrossingTimes
 Flashlight == MAGLITE
-InitialBatteryLife == 17
+InitialBatteryLife == 50
 
 TypeOK == 
         /\ near \union far \subseteq Adventurers \union {Flashlight} 
